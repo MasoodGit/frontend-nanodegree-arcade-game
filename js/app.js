@@ -1,19 +1,45 @@
+var CANVAS_WIDTH = 505;
+var CANVAS_HEIGHT = 686;
+var COL_WIDTH = 101;
+var ROW_HEIGHT = 83;
+var ROWS = 6 ;
+var COLS = 5 ;
+var ENEMY_TRACK_POSITIONS = [65,150,230];
+var ENEMY_SPEEDS = [100,125,150,175,200];
+var ENEMY_START_POSITION = -15;
+var PLAYER_START_POSITION_Y = ((ROWS - 1) * ROW_HEIGHT) - 25 ;
+var PLAYER_START_POSITION_X = 2 * COL_WIDTH;
+
+// Returns a random integer between min (included) and max (excluded)
+// Using Math.round() will give you a non-uniform distribution!
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 // Enemies our player must avoid
 var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    this.x = ENEMY_START_POSITION;
+    this.y = ENEMY_TRACK_POSITIONS[getRandomInt(ENEMY_TRACK_POSITIONS.length)];
+    this.speed = ENEMY_SPEEDS[getRandomInt(ENEMY_SPEEDS.length)];
     this.sprite = 'images/enemy-bug.png';
+}
+
+Enemy.prototype.reset = function() {
+  this.x = ENEMY_START_POSITION;
+  this.y = ENEMY_TRACK_POSITIONS[getRandomInt(ENEMY_TRACK_POSITIONS.length)];
+  this.speed = ENEMY_SPEEDS[getRandomInt(ENEMY_SPEEDS.length)];
 }
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+        if(this.x > CANVAS_WIDTH) {
+      this.reset();
+    }
+    else {
+      this.x += (this.speed * dt);
+    }
+    // console.log(this.x);
 }
 
 // Draw the enemy on the screen, required method for game
@@ -25,9 +51,13 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+var allEnemies = [];
+allEnemies.push(new Enemy());
+allEnemies.push(new Enemy());
+allEnemies.push(new Enemy());
+
 // Place the player object in a variable called player
 
 
@@ -42,5 +72,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+    //player.handleInput(allowedKeys[e.keyCode]);
 });
