@@ -57,7 +57,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
-    };
+    }
 
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
@@ -99,12 +99,12 @@ var Engine = (function(global) {
 
     function checkCollisions() {
         allEnemies.forEach(function(enemy)  {
-            if(enemy.x < player.x + 30 && 
+            if(enemy.x < player.x + 30 &&
                enemy.x + 30 > player.x &&
                enemy.y < player.y + 30   &&
                enemy.y + 30 > player.y)  {
                    enemy.reset();
-                    player.reset();
+                   player.reset();
             }
         });
 
@@ -145,11 +145,11 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+                ctx.drawImage(Resources.get(rowImages[row]),
+                    col * COL_WIDTH,
+                    row * ROW_HEIGHT);
             }
         }
-
-
         renderEntities();
     }
 
