@@ -1,9 +1,10 @@
 Welcome to the Front End Nanodegree frogger game.
 
 Instructions to play the game
+-----------------------------
 
-Your mission is to move across the tiles avoid collision
-with the enemey bugs.
+Your mission is to move across the tiles avoiding collision
+with the enemy bugs.
 
 Use the arrow keys to navigate your way across the tiles.
 
@@ -15,7 +16,8 @@ once you have reached the water tile you start over again.
 
 Happy playing :) , and have fun.
 
-Instructions to setup the game on your machine:
+Instructions to setup the game on your machine
+----------------------------------------------
 
 You can clone the repo or download the code base by going to github.
 
